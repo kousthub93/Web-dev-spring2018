@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <style>
+  
+  .leftDiv {
+
+   text-align: left;
+   float:left;
+   width:33%;
+}
+ .rightDiv{
+   text-align: left;
+   float: left;
+   width: 66%;
+
+}
+  </style>
+ </head>
+ <body>
+  <h1 style="text-align:center">HW02 Task Three</h1>
+  <div id="lDiv" class="leftDiv">
+    <table>
+      <tr>
+        <th>
+           Link Text
+        </th>
+      </tr>
+      <tr>
+        <td>
+         <a href="#" id="l1"> Lorem Ipsem</a>
+        </td>
+      </tr> 
+      <tr>
+        <td>
+         <a href="#" id="l2"> 99 Bottles</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="#" id="l3">Last Thing</a>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="rightDiv">
+    <table>
+     <tr>
+       <th>
+         Right Column Contents
+       </th>
+     </tr>
+     <tr>    
+       <td>
+        <div id="rDiv1"> 
+        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> 
+       <p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+       </p>
+
+       <p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+       </p>
+       <p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+       </p>
+      </div>
+    <div id="rDiv2" style="display:none;">
+     <p>
+       99 bottles of beer on the wall, 99 bottles of beer.
+Take one down, pass it around, 98 bottles of beer on the wall
+     </p>
+      <p>
+       98 bottles of beer on the wall, 98 bottles of beer.
+Take one down, pass it around, 98 bottles of beer on the wall
+     </p>
+ <p>
+       97 bottles of beer on the wall, 97 bottles of beer.
+Take one down, pass it around, 98 bottles of beer on the wall
+     </p>
+ <p>
+       96 bottles of beer on the wall, 96 bottles of beer.
+Take one down, pass it around, 98 bottles of beer on the wall
+     </p>
+    </div>
+    <div id="rDiv3" style="display:none;">
+    <p>
+     this is the third thing
+    </p>
+    </div>
+    </div>
+     </td>
+     </tr>
+   </table>
+  
+  <script>
+   (function (){
+  
+    document.getElementById('l1').addEventListener("click",function(){displayRight('l1');});
+    
+    document.getElementById('l2').addEventListener("click",function(){displayRight('l2');});
+ document.getElementById('l3').addEventListener("click",function(){displayRight('l3');});
+  
+ function displayRight(str){
+
+     if(str=="l1"){
+       document.getElementById('rDiv1').style.display ="block";
+       document.getElementById('rDiv2').style.display ="none";
+       document.getElementById('rDiv3').style.display="none";     
+     }
+
+     if(str=="l2"){
+     
+      document.getElementById('rDiv1').style.display ="none";
+       document.getElementById('rDiv2').style.display ="block";
+       document.getElementById('rDiv3').style.display="none";
+     } 
+   if(str=="l3"){
+     
+      document.getElementById('rDiv1').style.display ="none";
+       document.getElementById('rDiv2').style.display ="none";
+       document.getElementById('rDiv3').style.display="block";
+     } 
+   }
+
+   })();
+  </script>
+ </body>
+</html>

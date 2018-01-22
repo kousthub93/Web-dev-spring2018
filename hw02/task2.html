@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+   <title> 
+    task2
+   </title>
+  </head>
+  <body>
+  <h1 style="text-align:center;">TASK 2</h1>
+   <h2> <p id="number">10</p></h2>
+    <span>
+      <button type="button" id="btnShowNum">show current value</button>
+    </span>
+    <span>
+      <button id="btnIncrement">Increment value</button>
+    </span>
+    <span>
+      <button id="btnAppend">Append below</button>
+    </span>
+    <div id="bottomDiv" style="bottom:0%;position:fixed;">
+    </div>
+   <script>
+      (function (){
+        "use strict";
+
+         function showAlert(){
+          alert(num);  
+        
+         }
+
+         function increment(){
+         num++; 
+         }
+
+         function append(){
+
+         var p = document.createElement('p');
+         var text = document.createTextNode(num);
+         p.appendChild(text);
+         var appendDiv = document.getElementById('bottomDiv');
+         appendDiv.appendChild(p); 
+
+         }
+         var num = document.getElementById('number').innerText;
+         var btnShowNum = document.getElementById('btnShowNum');
+         btnShowNum.addEventListener("click",showAlert);
+
+         var btnIncrement =  document.getElementById("btnIncrement");
+         btnIncrement.addEventListener("click",increment);
+
+         var btnAppend = document.getElementById('btnAppend');
+         btnAppend.addEventListener('click',append)
+
+      })();
+    </script>
+
+  </body>
+</html>
