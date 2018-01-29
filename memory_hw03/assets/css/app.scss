@@ -1,0 +1,54 @@
+@import "bootstrap";
+
+.mainGame{}
+
+h1 { text-align: center; }
+
+.container{
+  
+}
+
+.footer{}
+
+button{}
+
+.CardComponentFlipped {
+  float: left;
+  width: 4rem;
+  height: 6rem;
+  padding: 1rem;
+  margin: 1rem;
+  border: 1px solid black;
+  text-align: center;
+  background-color: yellow;
+  padding-top:2rem;
+  font-weight: bold;
+  font-size:x-large;
+  }
+
+.CardComponentMatched {
+  float: left;
+  width: 4rem;
+  height: 6rem;
+  padding: 1rem;
+  margin: 1rem;
+  border: 1px solid black;
+  text-align: center;
+  background-color: green;
+  padding-top:2rem;
+}
+
+.buttonRefresh{
+  
+  padding-left: 28rem;
+
+}
+
+.score {
+  
+  padding-left: 1rem;
+}
+.buttonColor{
+  
+  background-color: beige;
+}
