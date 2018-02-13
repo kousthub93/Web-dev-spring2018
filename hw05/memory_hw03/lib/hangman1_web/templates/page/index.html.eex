@@ -1,0 +1,19 @@
+<script>
+
+	function appendUrl(){
+
+		var fname = document.getElementById('fname').value;
+		window.location.href = "/game/"+fname
+	}
+
+</script>
+<div class="row">
+  <div class="col">
+    <h1 id="index-page">Join a Game</h1>
+    <p>Enter your name and press submit to start</p>
+   <form action="javascript:appendUrl();">
+     <input type="text" name="fname" id ="fname">
+     <input type="submit" value="submit">
+   </form>
+  </div>
+</div>
