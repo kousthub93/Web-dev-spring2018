@@ -25,15 +25,25 @@ defmodule MyAppWeb.WorkController do
 
   def create(conn, %{"work" => work_params}) do
 
-    new_work = %Work{ assigned_by: conn.assigns[:current_user].name }
     users = Accounts.list_users()
-    case Todo_app_hope.create_work(work_params) do
-      {:ok, work} ->
-        conn
-        |> put_flash(:info, "Work created successfully.")
-        |> redirect(to: work_path(conn, :show, work))
-      {:error, %Ecto.Changeset{} = changeset} ->
+    new_work = %Work{ assigned_by: conn.assigns[:current_user].name }
+    {min_value,temp_value} = Integer.parse(work_params["done_time"]["minute"])
+    num = rem min_value, 15
+    if (num != 0) do 
+      conn
+      |> put_flash(:info, "Minutes should be in multiples of 15")
+      |> redirect(to: work_path(conn, :new))
+
+    else
+
+      case Todo_app_hope.create_work(work_params) do
+        {:ok, work} ->
+          conn
+          |> put_flash(:info, "Work created successfully.")
+          |> redirect(to: work_path(conn, :show, work))
+        {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset, users: users)
+      end
     end
   end
 
@@ -53,13 +63,24 @@ defmodule MyAppWeb.WorkController do
   def update(conn, %{"id" => id, "work" => work_params}) do
     work = Todo_app_hope.get_work!(id)
     users = Accounts.list_users()
-    case Todo_app_hope.update_work(work, work_params) do
-      {:ok, work} ->
-        conn
-        |> put_flash(:info, "Work updated successfully.")
-        |> redirect(to: work_path(conn, :show, work))
-      {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", work: work, changeset: changeset, users: users)
+    {min_value,temp_value} = Integer.parse(work_params["done_time"]["minute"])
+    num = rem min_value, 15
+
+    if (num != 0) do 
+      conn
+      |> put_flash(:info, "Minutes should be in multiples of 15")
+      |> redirect(to: work_path(conn, :edit, work))
+
+    else
+
+      case Todo_app_hope.update_work(work, work_params) do
+        {:ok, work} ->
+          conn
+          |> put_flash(:info, "Work updated successfully.")
+          |> redirect(to: work_path(conn, :show, work))
+        {:error, %Ecto.Changeset{} = changeset} ->
+          render(conn, "edit.html", work: work, changeset: changeset, users: users)
+      end
     end
   end
 
