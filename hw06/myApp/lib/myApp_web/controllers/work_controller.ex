@@ -52,14 +52,14 @@ defmodule MyAppWeb.WorkController do
 
   def update(conn, %{"id" => id, "work" => work_params}) do
     work = Todo_app_hope.get_work!(id)
-
+    users = Accounts.list_users()
     case Todo_app_hope.update_work(work, work_params) do
       {:ok, work} ->
         conn
         |> put_flash(:info, "Work updated successfully.")
         |> redirect(to: work_path(conn, :show, work))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", work: work, changeset: changeset)
+        render(conn, "edit.html", work: work, changeset: changeset, users: users)
     end
   end
 
