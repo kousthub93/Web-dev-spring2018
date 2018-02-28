@@ -16,7 +16,7 @@ defmodule MyApp.Work_app.Duration do
   @doc false
   def changeset(%Duration{} = duration, attrs) do
     duration
-    |> cast(attrs, [:start_time, :end_time])
+    |> cast(attrs, [:start_time, :end_time, :work_id])
     |> validate_required([:start_time, :end_time])
   end
 end

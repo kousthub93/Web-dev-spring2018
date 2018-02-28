@@ -44,6 +44,7 @@ defmodule MyAppWeb.WorkController do
   def show(conn, %{"id" => id}) do
     work = Work_app.get_work!(id)
     durations = Work_app.list_durations()
+    IO.inspect(durations)
     render(conn, "show.html", work: work, durations: durations)
   end
 
@@ -58,25 +59,16 @@ defmodule MyAppWeb.WorkController do
   def update(conn, %{"id" => id, "work" => work_params}) do
     work = Work_app.get_work!(id)
     users = Accounts.list_users()
-    {min_value,temp_value} = Integer.parse(work_params["done_time"]["minute"])
-    num = rem min_value, 15
 
-    if (num != 0) do 
+
+    case Work_app.update_work(work, work_params) do
+      {:ok, work} ->
       conn
-      |> put_flash(:info, "Minutes should be in multiples of 15")
-      |> redirect(to: work_path(conn, :edit, work))
-
-    else
-
-      case Work_app.update_work(work, work_params) do
-        {:ok, work} ->
-          conn
-          |> put_flash(:info, "Work updated successfully.")
-          |> redirect(to: work_path(conn, :show, work))
-        {:error, %Ecto.Changeset{} = changeset} ->
+        |> put_flash(:info, "Work updated successfully.")
+        |> redirect(to: work_path(conn, :show, work))
+      {:error, %Ecto.Changeset{} = changeset} ->
           render(conn, "edit.html", work: work, changeset: changeset, users: users)
       end
-    end
   end
 
   def delete(conn, %{"id" => id}) do

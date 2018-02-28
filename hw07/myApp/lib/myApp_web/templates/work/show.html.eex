@@ -57,7 +57,7 @@
   </thead>
   <tbody>
     <%= for duration <- @durations do %>
-    <%= if duration.id == @work.id do %>
+    <%= if duration.work_id == @work.id do %>
     <tr>
       <td><%= duration.id %></td>
       <td><%= duration.start_time %></td>

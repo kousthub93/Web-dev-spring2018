@@ -9,7 +9,7 @@ defmodule MyAppWeb.UserController do
     current_user = conn.assigns[:current_user]
     
     if current_user.manager_id==nil do
-      manager = %User{name: "na"}
+      manager = %User{name: "Not applicable"}
 
     else
       manager = Accounts.get_user(current_user.manager_id)
@@ -43,7 +43,7 @@ defmodule MyAppWeb.UserController do
     users = Accounts.list_users()
 
     if user.manager_id==nil do
-      manager = %User{name: "na"}
+      manager = %User{name: "Not Applicable"}
 
     else
       manager = Accounts.get_user(user.manager_id)

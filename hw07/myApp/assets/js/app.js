@@ -24,7 +24,6 @@ import $ from "jquery";
 function follow_click(ev) {
   let btn = $(ev.target);
   let work_id = btn.data('work_id');
-  alert(work_id);
   follow(work_id);
 
 }
@@ -32,7 +31,6 @@ function follow_click(ev) {
 function update_click(ev) {
   let btn = $(ev.target);
   let duration_id = btn.data('duration_id');
-  alert(duration_id);
   update(duration_id);
   
 
@@ -41,7 +39,6 @@ function update_click(ev) {
 function delete_click(ev) {
   let btn = $(ev.target);
   let duration_id = btn.data('duration_id');
-  alert(duration_id);
   delete_row(duration_id);
   
 
@@ -50,10 +47,8 @@ function delete_click(ev) {
 function start_click(ev) {
   let btn = $(ev.target);
   let duration_id = btn.data('duration_id');
-  alert(duration_id);
   start_update(duration_id);
   
-
 }
 
 function start_update(duration_id) {
@@ -71,10 +66,11 @@ function start_update(duration_id) {
     data: text,
     success: (resp) => { console.log(resp); },
   });
+
+  location.reload();
 }
 
 function delete_row(duration_id) {
-
   $.ajax(duration_path + "/"+duration_id, {
     method: "delete",
     dataType: "json",
@@ -82,6 +78,8 @@ function delete_row(duration_id) {
     data: "",
     success: (resp) => { console.log(resp); },
   });
+
+  location.reload();
 }
 
 
@@ -100,6 +98,9 @@ function update(duration_id) {
     data: text,
     success: (resp) => { console.log(resp); },
   });
+
+  location.reload();
+
 }
 
 
@@ -119,6 +120,8 @@ function follow(work_id) {
     data: text,
     success: (resp) => { console.log(resp); },
   });
+
+  location.reload();
 }
 
 
@@ -132,8 +135,6 @@ function init_follow() {
   $(".delete-button").click(delete_click);
   $(".updateStart-button").click(start_click);
 
-
-  update_buttons();
 }
 
 $(init_follow);
