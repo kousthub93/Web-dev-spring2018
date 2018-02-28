@@ -1,0 +1,84 @@
+<script>
+ window.duration_path = "<%= duration_path(@conn, :index) %>";
+ window.current_user_id = "<%= @current_user.id %>";
+</script>
+
+<h2>Task Summary</h2>
+
+<ul>
+
+  <li>
+    <strong>Assigned by:</strong>
+    <%= @work.assigned_by %>
+  </li>
+
+  <li>
+    <strong>Assigned to:</strong>
+    <%= @work.user.name %>
+  </li>
+
+
+  <li>
+    <strong>Task title:</strong>
+    <%= @work.task_title %>
+  </li>
+
+  <li>
+    <strong>Task body:</strong>
+    <%= @work.task_body %>
+  </li>
+
+
+  <li>
+    <strong>Done:</strong>
+    <%= @work.done %>
+  </li>
+
+
+</ul>
+
+<button class="follow-button btn btn-default"
+              data-work_id="<%= @work.id %>">
+        Create Time Block
+</button>
+
+<hr/>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Time_id</th>
+      <th>Start_time</th>
+      <th>End_time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for duration <- @durations do %>
+    <%= if duration.id == @work.id do %>
+    <tr>
+      <td><%= duration.id %></td>
+      <td><%= duration.start_time %></td>
+      <td><%= duration.end_time %></td>
+      <td><button class="updateEnd-button btn btn-default"
+              data-duration_id="<%= duration.id %>">
+        UpdateEndTime
+      </button></td>
+      <td><button class="delete-button btn btn-default"
+              data-duration_id="<%= duration.id %>">
+        Delete
+      </button></td>
+      <td><button class="updateStart-button btn btn-default"
+              data-duration_id="<%= duration.id %>">
+        updateStartTime
+      </button></td>
+    </tr>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= link "Edit | ", to: work_path(@conn, :edit, @work) %></span>
+<span><%= link "Back", to: work_path(@conn, :index) %></span>
